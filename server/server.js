@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/userRoute')
+const companyRouter=require('./routes/companyRoute')
 
 const app = express()
 const PORT = 8080 || process.env.PORT;
@@ -30,3 +31,4 @@ mongoose.connect(process.env.DB_URI)
 
 //Routes
 app.use('/user', userRouter)
+app.use('/company',companyRouter)
