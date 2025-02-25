@@ -5,14 +5,14 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema({
 
     company: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Company',
         required: true
     },
 
     sales: [{
         inventory: {
-            type: mongoose.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Inventory',
             required: true
         },
@@ -21,11 +21,10 @@ const OrderSchema = new Schema({
             type: Number,
             required: true
         }
-
     }],
 
     customer: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
@@ -37,6 +36,7 @@ const OrderSchema = new Schema({
 
     status: {
         type: String,
+        enum: ['in progress', 'opened', 'cancelled', 'completed'],
         required: true
     },
 
@@ -48,5 +48,5 @@ const OrderSchema = new Schema({
     }
 })
 
-const Order = mongoose.model('Order', OrderSchema);
-module.exports = OrderSchema 
+const orderModel = mongoose.model('Order', OrderSchema);
+module.exports = orderModel; 

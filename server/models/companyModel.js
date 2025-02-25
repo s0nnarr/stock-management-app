@@ -12,8 +12,8 @@ const companySchema = new Schema({
         type:mongoose.Types.ObjectId,
         ref:'User',
         
-    }
-    ,
+    },
+    
     users: [{
         user: {
             type: mongoose.Types.ObjectId,
@@ -42,15 +42,18 @@ const companySchema = new Schema({
         type: String,
         required: true
     },
-    // inventory: {
-    //     type:mongoose.Types.ObjectId,
-    //     ref:'Inventory'
-    // },
-    // orders:[{
-    //     type:mongoose.Types.ObjectId,
-    //     ref:'Order'
-    // }]
-    // ,
+
+    /* */
+    inventory: {
+        type:mongoose.Types.ObjectId,
+        ref:'Inventory'
+    },
+    orders:[{
+        type:mongoose.Types.ObjectId,
+        ref:'Order'
+    }],
+
+    /* */
     auditLog:[{
         message:{
             type:String,

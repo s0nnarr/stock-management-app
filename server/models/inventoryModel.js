@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 
 const inventorySchema = new Schema({
     company: {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'Company',
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
         type: String,
         required: true
     },
