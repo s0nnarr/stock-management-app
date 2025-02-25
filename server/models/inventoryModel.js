@@ -4,6 +4,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const inventorySchema = new Schema({
+    company: {
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'Company',
+        type: String,
+        required: true
+    },
     product_name: {
         type: String,
         required: true
@@ -24,7 +30,7 @@ const inventorySchema = new Schema({
     auditLog:[{
         message:{
             type:String,
-            required:true   
+            required: false
         }
         ,
         date:{
@@ -38,7 +44,7 @@ const inventorySchema = new Schema({
     }],
     alertLog:{
         type:String,
-        required:true
+        required:false
     }
 
 }, {
