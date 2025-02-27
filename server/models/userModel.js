@@ -16,13 +16,23 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-/*     companies: [{
-        id: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
-        role: String
+    companies: [{
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Company'
+        },
+        role: {
+            type: String,
+            enum: ['owner', 'admin', 'staff'],
+            required: true
+        }
     }],
     currentCompany: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Company'
-    } */
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company'
+    }
+}, {
+    timestamps: true
 })
 
 //Signup Method
