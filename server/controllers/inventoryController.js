@@ -1,11 +1,14 @@
 const inventoryModel = require('../models/inventoryModel.js')
 
 const postProduct = async (req, res) => {
-    const { company, product_name, price, unit, stock } = req.body
+    const { company, productName, price, unit, stock } = req.body
+    if( !company || !productName || !price || !unit || !stock){
+        return res.status(400).json({error: "All fields are required."});
+    }
     try {
         const Product = await inventoryModel.create
             ({
-                company, product_name, price, unit, stock
+                company, productName, price, unit, stock
             })
         res.status(200).json(Product)
     } catch (err) {
@@ -15,7 +18,22 @@ const postProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     try {
-        const Products = await inventoryModel.find()
+        const page = parseInt(req.query.page) || 0;
+        const size = parseInt(req.query.size) || 5;
+
+        const Products = await inventoryModel
+        .find()
+        .populate('Company', 'name')
+        .skip(page*size)
+        .limit(size)
+        .select({
+            company: 1,
+            productName:1, 
+            price:1, 
+            unit:1, 
+            stock:1,
+            _id:0,
+        })
         res.status(200).json(Products)
     } catch (err) {
         res.status(400).json({ error: err.message })

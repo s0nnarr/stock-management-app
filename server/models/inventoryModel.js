@@ -5,12 +5,11 @@ const Schema = mongoose.Schema;
 
 const inventorySchema = new Schema({
     company: {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'Company',
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
         required: true
     },
-    product_name: {
+    productName: {
         type: String,
         required: true
     },
@@ -27,26 +26,6 @@ const inventorySchema = new Schema({
         type: Number,
         required: true
     },
-    auditLog:[{
-        message:{
-            type:String,
-            required: false
-        }
-        ,
-        date:{
-            type:Date,
-            default:Date.now
-        },
-        time:{
-            type:String,
-            default:new Date().toLocaleTimeString()
-        }
-    }],
-    alertLog:{
-        type:String,
-        required:false
-    }
-
 }, {
     timestamps:true
 });
