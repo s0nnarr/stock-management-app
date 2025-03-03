@@ -15,7 +15,7 @@ const verifyRefreshToken = (res, req) => {
     if (!refreshToken) {
         res.status(403).json({ error: "ExpiredRefreshToken" })
     } else {
-        jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
+        jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, async (err, decoded) => {
             if (err) {
                 //Check if the token is expired
                 if (err.name === 'TokenExpiredError') {
@@ -26,13 +26,12 @@ const verifyRefreshToken = (res, req) => {
                 }
             } else {
                 //Create new access token
-                const User = userModel.findById(decoded.id)
+                const User = await userModel.findById(decoded.id)
                 if (User) {
                     const accessToken = createAccessToken(decoded.id)
                     res.cookie('accessToken', accessToken, { maxAge: 60000 * parseInt(process.env.JWT_ACCESS_TIME) })
                     accessTokenCreated = true
                     req.headers['authorization'] = `Bearer ${accessToken}`;
-                    req.user = User
                 } else {
                     res.status(401).json('Invalid Token')
                 }

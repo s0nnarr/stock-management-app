@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/userRoute')
+const alertRouter = require('./routes/alertRoute')
 const companyRouter=require('./routes/companyRoute')
 const inventoryRouter = require('./routes/inventoryRoute'); 
 
@@ -32,5 +33,6 @@ mongoose.connect(process.env.DB_URI)
 
 //Routes
 app.use('/user', userRouter)
+app.use('/alert', alertRouter)
 app.use('/company',companyRouter)
 app.use('/inventory', inventoryRouter)
