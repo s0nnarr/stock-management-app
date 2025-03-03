@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/userRoute')
 const companyRouter=require('./routes/companyRoute')
 const inventoryRouter = require('./routes/inventoryRoute'); 
+const orderRouter = require('./routes/orderRoute');
 
 const app = express()
 const PORT = 8080 || process.env.PORT;
@@ -17,6 +18,7 @@ app.use(cors({
 }))
 app.use(express.json({ limit: '50mb' }))
 app.use(cookieParser())
+
 
 //MongoDB
 mongoose.connect(process.env.DB_URI)
@@ -34,3 +36,4 @@ mongoose.connect(process.env.DB_URI)
 app.use('/user', userRouter)
 app.use('/company',companyRouter)
 app.use('/inventory', inventoryRouter)
+app.use('/order', orderRouter);
