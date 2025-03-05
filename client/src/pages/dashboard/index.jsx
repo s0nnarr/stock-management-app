@@ -4,12 +4,24 @@ import './index.css'
 
 function Dashboard() {
 
-    const { data: user, loading: loadingUser, fetchData: fetchUser } = useFetch('user')
+    const { data: user, error: errorUser, loading: loadingUser, fetchData: fetchUser } = useFetch('user')
 
     return (
-        <div className='dashboard-main'>
-            {user ? <h1>Hello {user[0].name}</h1> : <h1>Loading...</h1>}
-        </div >
+        loadingUser ?
+            <div>
+                Loading...
+            </div> :
+            <div>
+                {
+                    errorUser &&
+                    <p className='signup_p_error'>
+                        {errorUser}
+                    </p>
+                }
+                <div className='dashboard-main'>
+                    {user ? <h1>Hello {user[0].name}</h1> : <h1>No user...</h1>}
+                </div >
+            </div>
     )
 }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios'
@@ -9,6 +9,8 @@ export const useFetch = (route) => {
     const navigate = useNavigate()
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const errorTimeoutRef = useRef(null)
 
     const fetchData = async (params, func) => {
         setLoading(true)
@@ -18,8 +20,17 @@ export const useFetch = (route) => {
             if (func) func()
         } catch (error) {
             console.log(error)
-            if (error.response.data.error === 'ExpiredRefreshToken') {
+            if (error.response?.data.error === 'ExpiredRefreshToken') {
                 navigate('/login')
+            } else {
+                setError(error.response?.data?.error || "An error occurred")
+                //Clear previous timeout if exists
+                if (errorTimeoutRef.current) {
+                    clearTimeout(errorTimeoutRef.current)
+                }
+                errorTimeoutRef.current = setTimeout(() => {
+                    setError(null)
+                }, 8000)
             }
         } finally {
             setLoading(false)
@@ -30,5 +41,5 @@ export const useFetch = (route) => {
         fetchData()
     }, [route])
 
-    return { data, loading, fetchData }
+    return { fetchData, data, error, loading }
 }
