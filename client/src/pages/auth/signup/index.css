@@ -1,11 +1,11 @@
-.signup_div_main {
+.signup-main {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 100vh;
 }
 
-.signup_div_signup {
+.signup-div-wrapper {
     width: 480px;
     height: 56%;
     border-radius: 32px;
@@ -17,7 +17,7 @@
     background-color: var(--base-variant);
 }
 
-.signup_div_signup input {
+.signup-div-wrapper input {
     outline: none;
     border: none;
     background-color: var(--base-color);
@@ -30,7 +30,7 @@
     margin-top: 16px;
 }
 
-.signup_div_signup button {
+.signup-div-wrapper button {
     cursor: pointer;
     width: 384px;
     height: 46px;
@@ -43,18 +43,18 @@
     font-weight: 600;
 }
 
-.signup_div_signup button:disabled {
+.signup-div-wrapper button:disabled {
     background-color: var(--disabled-hint-text);
     cursor: wait;
 }
 
-.signup_p_title {
+.signup-p-title {
     margin: 24px;
     font-size: 42px;
     font-weight: 600;
 }
 
-.signup_div_signup a {
+.signup-div-wrapper a {
     text-decoration: none;
     margin-top: 16px;
     font-size: 14px;
@@ -63,11 +63,11 @@
     cursor: pointer;
 }
 
-.signup_div_signup a:hover {
+.signup-div-wrapper a:hover {
     color: var(--text-color);
 }
 
-.signup_p_error {
+.signup-p-error {
     display: flex;
     justify-content: center;
     background-color: var(--danger-color);
@@ -80,15 +80,15 @@
 
 
 @media (max-width: 425px) {
-    .signup_div_signup input {
+    .signup-div-wrapper input {
         width: 248px;
     }
 
-    .signup_div_signup button {
+    .signup-div-wrapper button {
         width: 268px;
     }
 
-    .signup_div_signup {
+    .signup-div-wrapper {
         width: 312px;
     }
 }

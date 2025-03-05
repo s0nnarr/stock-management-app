@@ -14,19 +14,19 @@ function Login() {
         <>
             {
                 error &&
-                <p className='signup_p_error'>
+                <p className='signup-p-error'>
                     {error}
                 </p>
             }
-            <div className='signup_div_main'>
-                <div className='signup_div_signup'>
-                    <h1 className='signup_p_title'>Log in</h1>
+            <main className='signup-main'>
+                <div className='signup-div-wrapper'>
+                    <p className='signup-p-title'>Log in</p>
                     <input placeholder='Email' onChange={e => { setEmail(e.target.value) }} />
                     <input type='password' placeholder='Password' onChange={e => { setPassword(e.target.value) }} />
                     <button disabled={loading} onClick={() => loginUser({ email, password }, () => navigate('/'))}>Continue</button>
                     <a href='/signup'>Don't have an account</a>
                 </div>
-            </div>
+            </main>
         </>
     )
 }

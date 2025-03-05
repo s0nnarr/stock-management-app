@@ -1,6 +1,7 @@
 import React from 'react'
 import { useFetch } from '../../hooks/useFetch';
 import './index.css'
+import Sidebar from '../../components/sidebar';
 
 function Dashboard() {
 
@@ -12,15 +13,16 @@ function Dashboard() {
                 Loading...
             </div> :
             <div>
+                <Sidebar tab={'Dashboard'} />
                 {
                     errorUser &&
-                    <p className='signup_p_error'>
+                    <p className='signup-p-error'>
                         {errorUser}
                     </p>
                 }
-                <div className='dashboard-main'>
+                <main className='dashboard-main'>
                     {user ? <h1>Hello {user[0].name}</h1> : <h1>No user...</h1>}
-                </div >
+                </main >
             </div>
     )
 }

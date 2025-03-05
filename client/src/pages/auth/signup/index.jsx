@@ -16,13 +16,13 @@ function Signup() {
         <>
             {
                 error &&
-                <p className='signup_p_error'>
-                    {error[0]}
+                <p className='signup-p-error'>
+                    {error}
                 </p>
             }
-            <div className='signup_div_main'>
-                <div className='signup_div_signup'>
-                    <p className='signup_p_title'>Sign up</p>
+            <div className='signup-main'>
+                <div className='signup-div-wrapper'>
+                    <p className='signup-p-title'>Sign up</p>
                     <input placeholder='Full name' onChange={e => setName(e.target.value)} />
                     <input placeholder='Email' onChange={e => setEmail(e.target.value)} />
                     <input type='password' placeholder='Password' onChange={e => setPassword(e.target.value)} />
