@@ -20,7 +20,7 @@ export const useFetch = (route) => {
             if (func) func()
         } catch (error) {
             console.log(error)
-            if (error.response?.data.error === 'ExpiredRefreshToken') {
+            if (error.response?.data.error === 'ExpiredRefreshToken' || error.response?.data.error === 'Invalid Token') {
                 navigate('/login')
             } else {
                 setError(error.response?.data?.error || "An error occurred")

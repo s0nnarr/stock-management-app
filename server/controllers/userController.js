@@ -5,7 +5,8 @@ const { accessOptions, refreshOptions } = require('../config/cookiesConfig')
 const postUser = async (req, res) => {
     const { name, email, password } = req.body
     try {
-        const User = await userModel.signup(email, password, name)
+        let User = await userModel.signup(email, password, name)
+        User = await userModel.findById(User._id).select('-password')
 
         //Send token cookies
         const accessToken = createAccessToken(User._id)
@@ -13,7 +14,7 @@ const postUser = async (req, res) => {
         const refreshToken = createRefreshToken(User._id)
         res.cookie('refreshToken', refreshToken, refreshOptions)
 
-        res.status(200).json('Account created')
+        res.status(200).json(User)
     } catch (err) {
         res.status(400).json({ error: err.message })
     }
@@ -22,14 +23,15 @@ const postUser = async (req, res) => {
 const logUser = async (req, res) => {
     const { email, password } = req.body
     try {
-        const User = await userModel.login(email, password)
+        let User = await userModel.login(email, password)
+        User = await userModel.findById(User._id).select('-password')
 
         const accessToken = createAccessToken(User._id)
         res.cookie('accessToken', accessToken, accessOptions)
         const refreshToken = createRefreshToken(User._id)
         res.cookie('refreshToken', refreshToken, refreshOptions)
 
-        res.status(200).json('Account logged')
+        res.status(200).json(User)
     } catch (err) {
         res.status(400).json({ error: err.message })
     }
@@ -42,6 +44,15 @@ const signoutUser = async (req, res) => {
         res.status(200).json('Signed out')
     } catch (err) {
         res.status(400).json({ error: err.message })
+    }
+}
+
+const getUser = async (req, res) => {
+    try {
+        const User = await userModel.findById(req.user.id).select('-password')
+        res.status(200).json(User);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
     }
 }
 
@@ -73,4 +84,4 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-module.exports = { postUser, logUser, signoutUser, putUser, deleteUser, getAllUsers }
+module.exports = { postUser, logUser, signoutUser, getUser, putUser, deleteUser, getAllUsers }

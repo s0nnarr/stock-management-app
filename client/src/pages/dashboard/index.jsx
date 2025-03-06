@@ -2,6 +2,7 @@ import React from 'react'
 import { useFetch } from '../../hooks/useFetch';
 import './index.css'
 import Sidebar from '../../components/sidebar';
+import Navbar from '../../components/navbar';
 
 function Dashboard() {
 
@@ -14,6 +15,7 @@ function Dashboard() {
             </div> :
             <div>
                 <Sidebar tab={'Dashboard'} />
+                <Navbar />
                 {
                     errorUser &&
                     <p className='signup-p-error'>

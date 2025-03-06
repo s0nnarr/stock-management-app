@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { usePost } from '../../../hooks/usePost'
 
@@ -10,6 +10,11 @@ function Login() {
 
     const { postData: loginUser, data, error, loading } = usePost('user/login')
 
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        await loginUser({ email, password }, () => navigate('/'))
+    }
+
     return (
         <>
             {
@@ -18,15 +23,15 @@ function Login() {
                     {error}
                 </p>
             }
-            <main className='signup-main'>
+            <form className='signup-form' onSubmit={handleLogin}>
                 <div className='signup-div-wrapper'>
                     <p className='signup-p-title'>Log in</p>
                     <input placeholder='Email' onChange={e => { setEmail(e.target.value) }} />
                     <input type='password' placeholder='Password' onChange={e => { setPassword(e.target.value) }} />
-                    <button disabled={loading} onClick={() => loginUser({ email, password }, () => navigate('/'))}>Continue</button>
+                    <button disabled={loading}>Continue</button>
                     <a href='/signup'>Don't have an account</a>
                 </div>
-            </main>
+            </form>
         </>
     )
 }

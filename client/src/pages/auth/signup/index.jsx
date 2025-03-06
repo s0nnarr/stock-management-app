@@ -12,6 +12,11 @@ function Signup() {
 
     const { postData: postUser, data, error, loading } = usePost('user')
 
+    const handleSignup = async (e) => {
+        e.preventDefault()
+        await postUser({ name, email, password }, () => navigate('/'))
+    }
+
     return (
         <>
             {
@@ -20,16 +25,16 @@ function Signup() {
                     {error}
                 </p>
             }
-            <div className='signup-main'>
+            <form className='signup-form' onSubmit={handleSignup}>
                 <div className='signup-div-wrapper'>
                     <p className='signup-p-title'>Sign up</p>
                     <input placeholder='Full name' onChange={e => setName(e.target.value)} />
                     <input placeholder='Email' onChange={e => setEmail(e.target.value)} />
                     <input type='password' placeholder='Password' onChange={e => setPassword(e.target.value)} />
-                    <button disabled={loading} onClick={() => postUser({ name, email, password }, () => navigate('/'))}>Create account</button>
+                    <button disabled={loading}>Create account</button>
                     <a href='/login'>Already have an account</a>
                 </div>
-            </div>
+            </form>
         </>
     )
 }
