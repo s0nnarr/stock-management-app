@@ -9,6 +9,7 @@ const {
     signoutUser,
     putUser,
     deleteUser,
+    getUser,
 } = require('../controllers/userController')
 
 router
@@ -16,6 +17,7 @@ router
     .get('/', verifyAccessToken, verifyRole(['owner', 'admin']), getAllUsers)
     .delete('/', verifyAccessToken, deleteUser)
     .put('/', verifyAccessToken, putUser)
+router.get('/current', verifyAccessToken, getUser)
 router.post('/login', logUser)
 router.post('/signout', signoutUser)
 
