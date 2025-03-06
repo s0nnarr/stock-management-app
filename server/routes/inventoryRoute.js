@@ -1,5 +1,9 @@
 const express = require('express')
 const router = express.Router()
+
+const verifyAccessToken = require('../middleware/verifyAccessToken')
+const verifyRole = require('../middleware/verifyRole')
+
 const {
     postProduct,
     getAllProducts,
@@ -9,10 +13,10 @@ const {
 } = require("../controllers/inventoryController")
 
 router
-    .post('/', postProduct)
-    .get('/', getAllProducts)
-    .get('/:id', getOneProduct)
-    .put('/:id', updateProduct)
-    .delete('/:id', deleteProduct)
+    .post('/',verifyAccessToken, verifyRole(['admin', 'owner']), postProduct)
+    .get('/',verifyAccessToken, getAllProducts)
+    .get('/:id',verifyAccessToken, getOneProduct)
+    .put('/:id',verifyAccessToken, verifyRole(['admin', 'owner']), updateProduct)
+    .delete('/:id',verifyAccessToken, verifyRole(['admin', 'owner']), deleteProduct)
     
 module.exports = router 
