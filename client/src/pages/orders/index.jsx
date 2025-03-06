@@ -8,7 +8,6 @@ function Orders() {
                 <table className='orders-table'>
                     <thead>
                         <tr>
-                            <tp>V</tp>
                             <tp>No.</tp>
                             <tp>Product Name</tp>
                             <tp>Price</tp>
@@ -23,7 +22,7 @@ function Orders() {
                 <table className='orders-table'>
                     <thead>
                         <tr>
-                            <tp>V</tp>
+                            <button className='dropdown-button'> V </button>
                             <tp>No.</tp>
                             <tp>Product Name</tp>
                             <tp>Price</tp>

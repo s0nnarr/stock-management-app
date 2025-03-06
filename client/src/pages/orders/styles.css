@@ -25,3 +25,13 @@
 .orders-table tp, .orders-table td {
     padding: 5%;
 }
+
+.dropdown-button {
+    background-color: transparent;
+    border: none;
+    text-align: left;
+}
+
+.dropdown-button:hover {
+    cursor: pointer;
+}
