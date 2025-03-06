@@ -71,7 +71,7 @@ const companySchema = new Schema({
     }],
     alertLog:{
         type:String,
-        required:true
+        // required:true
     }
 
 }, {

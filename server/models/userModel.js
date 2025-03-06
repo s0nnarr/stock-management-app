@@ -20,9 +20,10 @@ const userSchema = new mongoose.Schema({
         id: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
         role: String
     }],
+    */
     currentCompany: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Company'
-    } */
+    }
 })
 
 //Signup Method
