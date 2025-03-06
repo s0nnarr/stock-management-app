@@ -1,13 +1,4 @@
 const companyModel = require('../models/companyModel.js')
-<<<<<<< HEAD
-
-
-const postCompany = async (req, res) => {
-
-
-    try {
-        const { id, name, address, phone, currency } = req.body;
-=======
 const userModel = require('../models/userModel.js')
 
 const postCompany = async (req, res) => {
@@ -30,23 +21,15 @@ const postCompany = async (req, res) => {
         if (existingCompany) {
             throw new Error('Company already exists!');
         }
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 
         const company = await companyModel.create({
             id,
             name,
-<<<<<<< HEAD
-=======
             owner: user._id,
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
             address,
             phone,
             currency
         });
-<<<<<<< HEAD
-
-        res.status(200).json({ message: 'Company created successfully' });
-=======
         user.companies.push({ id: company._id, role: 'owner' });
         user.currentCompany = company._id;
         company.users.push({ user: user._id, role: 'owner' });
@@ -69,91 +52,14 @@ const getCompanyAbout = async (req, res) => {
             throw new Error('Company not found!');
         }
         res.status(200).json({ company: company });
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 
     }
     catch (error) {
         res.status(400).json({ message: error.message });
-<<<<<<< HEAD
-    }
-
-
-}
-
-
-const getCompanyAbout = async (req, res) => {
-    try {
-
-        const { id } = req.params;
-
-        const company = await companyModel.findOne({ id: id }, { _id: 0, name: 1, address: 1, phone: 1, currency: 1 });
-
-        if (!company) {
-            throw new Error('Company not found!');
-        }
-        res.status(200).json({ company: company });
-
-    }
-
-
-    catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-
-
-}
-
-
-
-const getCompanyUsers = async (req, res) => {
-
-    try {
-        const companyID = req.query.companyID;
-        const page = req.query.page || 0;
-        const size = req.query.size || 5;
-        const company = await companyModel.findOne({ id: companyID }, { _id: 0, users: 1 }).skip(page * size).limit(size);
-
-        if (!company) {
-            throw new Error('No users found!');
-        }
-
-        res.status(200).json({ users: company.users });
-
-    }
-    catch (error) {
-        res.status(400).json({ message: error.message });
-=======
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
     }
 
 }
 
-<<<<<<< HEAD
-
-
-
-
-
-const getAuditLog = async (req, res) => {
-
-    try {
-
-        const companyID = req.query.companyID;
-
-        const page = req.query.page || 0;
-        const size = req.query.size || 5;
-
-
-        const company = await companyModel.findOne({ id: companyID }, { _id: 0, auditLog: 1 }).skip(page * size).limit(size);
-
-        if (!company) {
-            throw new Error('No audit log found!');
-        }
-
-        res.status(200).json({ auditLog: company.auditLog });
-
-
-=======
 const getCompanyUsers = async (req, res) => {
 
     try {
@@ -166,31 +72,12 @@ const getCompanyUsers = async (req, res) => {
             throw new Error('No users found!');
         }
         res.status(200).json({ users: company.users });
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 
     }
     catch (error) {
         res.status(400).json({ message: error.message });
     }
 
-<<<<<<< HEAD
-};
-
-const getAllCompanies = async (req, res) => {
-    try {
-        const companies = await companyModel.find();
-        if (!companies) {
-            res.status(404).json({ message: "Company not found. "});
-        }
-        res.status(200).json(companies);
-    } catch (err) {
-        res.status(500).json({ message: "Error fetching companies. "});
-    }
-    
-}
-
-module.exports = { getAuditLog, postCompany, getCompanyAbout, getCompanyUsers, getAllCompanies };
-=======
 }
 
 
@@ -288,4 +175,3 @@ const deleteCompany = async (req, res) => {
 
 
 module.exports = { postCompany, getCompanyAbout, getCompanyUsers, addUser, removeUser, deleteCompany };
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab

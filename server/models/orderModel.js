@@ -24,12 +24,7 @@ const OrderSchema = new Schema({
     }],
 
     customer: {
-<<<<<<< HEAD
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-=======
         type: String,
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
         required: true
     },
 
@@ -52,10 +47,5 @@ const OrderSchema = new Schema({
     }
 })
 
-<<<<<<< HEAD
 const orderModel = mongoose.model('Order', OrderSchema);
 module.exports = orderModel; 
-=======
-const Order = mongoose.model('Order', OrderSchema);
-module.exports = Order;
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab

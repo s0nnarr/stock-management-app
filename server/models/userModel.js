@@ -27,18 +27,13 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }],
-    */
+    
     currentCompany: {
-<<<<<<< HEAD
-        type: mongoose.Schema.Types.ObjectId, ref: 'Company'
-    }
-=======
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Company'
     }
 }, {
     timestamps: true
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 })
 
 //Signup Method

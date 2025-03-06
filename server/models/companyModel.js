@@ -42,41 +42,7 @@ const companySchema = new Schema({
         type: String,
         required: true
     },
-<<<<<<< HEAD
-
-    /* */
-    inventory: {
-        type:mongoose.Types.ObjectId,
-        ref:'Inventory'
-    },
-    orders:[{
-        type:mongoose.Types.ObjectId,
-        ref:'Order'
-    }],
-
-    /* */
-    auditLog:[{
-        message:{
-            type:String,
-            required:true   
-        }
-        ,
-        date:{
-            type:Date,
-            default:Date.now
-        },
-        time:{
-            type:String,
-            default:new Date().toLocaleTimeString()
-        }
-    }],
-    alertLog:{
-        type:String,
-        // required:true
-    }
-=======
    
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 
 }, {
     timestamps:true

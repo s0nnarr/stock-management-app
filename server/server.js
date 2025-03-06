@@ -7,10 +7,6 @@ const alertRouter = require('./routes/alertRoute')
 const companyRouter=require('./routes/companyRoute')
 const inventoryRouter = require('./routes/inventoryRoute'); 
 const orderRouter = require('./routes/orderRoute');
-<<<<<<< HEAD
-
-=======
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 
 const app = express()
 const PORT = 8080 || process.env.PORT;
@@ -42,8 +38,4 @@ app.use('/user', userRouter)
 app.use('/alert', alertRouter)
 app.use('/company',companyRouter)
 app.use('/inventory', inventoryRouter)
-<<<<<<< HEAD
 app.use('/order', orderRouter)
-=======
-app.use('/order', orderRouter);
->>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
