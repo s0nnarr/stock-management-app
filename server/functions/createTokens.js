@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const createAccessToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_ACCESS_SECRET, { expiresIn: '5m' })
 }
-/*  The refresh token is also sent in the cookies on log in, expiration date depends
+/*  The refresh token is sent in the cookies only on log in, expiration date depends
     on the app, for inventory management I will leave it at 1 week, but until production I will
     leave it at 15 minutes for testing. When it expires the user is signed out and cannot
     access any protected route by the 'verifyAccessToken' middleware   */

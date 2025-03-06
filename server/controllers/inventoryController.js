@@ -1,11 +1,15 @@
 const inventoryModel = require('../models/inventoryModel.js')
+const alertModel = require('../models/alertModel.js')
 
 const postProduct = async (req, res) => {
-    const { company, product_name, price, unit, stock } = req.body
+    const { company, productName, price, unit, stock } = req.body
+    if (!company || !productName || !price || !unit || !stock) {
+        return res.status(400).json({ error: "All fields are required." });
+    }
     try {
         const Product = await inventoryModel.create
             ({
-                company, product_name, price, unit, stock
+                company, productName, price, unit, stock
             })
         res.status(200).json(Product)
     } catch (err) {
@@ -15,7 +19,22 @@ const postProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     try {
-        const Products = await inventoryModel.find()
+        const page = parseInt(req.query.page) || 0;
+        const size = parseInt(req.query.size) || 5;
+
+        const Products = await inventoryModel
+            .find()
+            .populate('Company', 'name')
+            .skip(page * size)
+            .limit(size)
+            .select({
+                company: 1,
+                productName: 1,
+                price: 1,
+                unit: 1,
+                stock: 1,
+                _id: 0,
+            })
         res.status(200).json(Products)
     } catch (err) {
         res.status(400).json({ error: err.message })
@@ -38,25 +57,25 @@ const getOneProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
     const { id } = req.params
     try {
-        //Check current user
-        // const User = await currentUser(req, res)
-        // if (!User) {
-        //     return res.status(403).json({ error: "InvalidId" });
-        // }
-        // //Check user authorization
-        // if (User.role !== 'admin') {
-        //     return res.status(403).json({ error: "Forbidden" });
-        // }
+        const inventory = await inventoryModel.findByIdAndUpdate(id, req.body)
+        const { company, productName, stock, unit } = await inventoryModel.findById(inventory._id)
 
-        await inventoryModel.findByIdAndUpdate(id, req.body)
+        //Stock alerts
+        if (stock === 0) {
+            await alertModel.create({ company, message: `Product '${productName}' is out of stock!` })
+        }
+        else if (stock <= 20) {
+            await alertModel.create({ company, message: `Product '${productName}' has ${stock} ${unit} left on stock!` })
+        }
+
         res.status(200).json("Product updated successfully");
     } catch (err) {
+
         res.status(400).json({ error: err.message });
     }
 }
 
 const deleteProduct = async (req, res) => {
-    //in production -> only admins
     try {
         const { id } = req.params;
         const Product = await inventoryModel.findByIdAndDelete(id);
@@ -70,4 +89,4 @@ const deleteProduct = async (req, res) => {
 }
 
 
-module.exports = { postProduct, getOneProduct, getAllProducts, updateProduct, deleteProduct}
+module.exports = { postProduct, getOneProduct, getAllProducts, updateProduct, deleteProduct }

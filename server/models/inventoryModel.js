@@ -7,10 +7,13 @@ const inventorySchema = new Schema({
     company: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Company',
+<<<<<<< HEAD
         type: String,
+=======
+>>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
         required: true
     },
-    product_name: {
+    productName: {
         type: String,
         required: true
     },
@@ -27,6 +30,7 @@ const inventorySchema = new Schema({
         type: Number,
         required: true
     },
+<<<<<<< HEAD
     auditLog:[{
         message:{
             type:String,
@@ -46,6 +50,8 @@ const inventorySchema = new Schema({
         required:false
     }
 
+=======
+>>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 }, {
     timestamps:true
 });

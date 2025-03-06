@@ -42,6 +42,7 @@ const companySchema = new Schema({
         type: String,
         required: true
     },
+<<<<<<< HEAD
 
     /* */
     inventory: {
@@ -73,6 +74,9 @@ const companySchema = new Schema({
         type:String,
         // required:true
     }
+=======
+   
+>>>>>>> 11fc8bf2b1fef39585e11eea96b3a65fe1fb84ab
 
 }, {
     timestamps:true

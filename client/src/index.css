@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+  --accent-color: #ffffff;
+  --base-color: #0F0F0F;
+  --base-variant: #1F1F1F;
+  --text-color: white;
+  --secondary-text: rgba(255, 255, 255, 0.7);
+  --disabled-hint-text: rgba(255, 255, 255, 0.5);
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+  --button-text: #000;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
@@ -25,7 +37,7 @@
 * {
   margin: 0;
   font-family: 'Raleway';
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 body {
