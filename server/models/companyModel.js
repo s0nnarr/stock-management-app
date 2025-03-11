@@ -4,19 +4,16 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const companySchema = new Schema({
-    id:{
-        type:String,
-        required:true
+
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+
     },
-    owner:{
-        type:mongoose.Types.ObjectId,
-        ref:'User',
-        
-    },
-    
+
     users: [{
         user: {
-            type: mongoose.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },
         role: {
@@ -42,13 +39,13 @@ const companySchema = new Schema({
         type: String,
         required: true
     },
-   
+
 
 }, {
-    timestamps:true
+    timestamps: true
 });
 
 
 
-const Company= mongoose.model('Company', companySchema);
-module.exports=Company;
+const Company = mongoose.model('Company', companySchema);
+module.exports = Company;

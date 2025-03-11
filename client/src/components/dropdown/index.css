@@ -1,4 +1,4 @@
-.dropdown-div {
+.dropdown-menu {
     display: none;
     position: absolute;
     right: 32px;
@@ -11,7 +11,7 @@
     padding: 8px;
 }
 
-.dropdown-div ul {
+.dropdown-menu ul {
     list-style: none;
     display: flex;
     padding: 0;
@@ -20,7 +20,7 @@
     width: 98%;
 }
 
-.dropdown-div li {
+.dropdown-menu li {
     display: flex;
     width: calc(100% - 8px);
     border-radius: 8px;
@@ -32,6 +32,6 @@
     cursor: pointer;
 }
 
-.dropdown-div li:hover {
+.dropdown-menu li:hover {
     background-color: var(--base-color);
 }

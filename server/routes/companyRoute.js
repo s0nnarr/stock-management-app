@@ -17,8 +17,8 @@ router.get("/getcompanyusers",verifyAccessToken,getCompanyUsers);
 
 router
     .post("/",verifyAccessToken,postCompany)
-    .get("/:id",verifyAccessToken,getCompanyAbout)
-    .delete("/:id",verifyAccessToken, verifyRole(['owner', 'admin']),deleteCompany)
+    .get("/",verifyAccessToken,getCompanyAbout)
+    .delete("/",verifyAccessToken, verifyRole(['owner', 'admin']),deleteCompany)
    
 router.put("/adduser",verifyAccessToken, verifyRole(['owner', 'admin']),addUser);
 router.put("/removeuser",verifyAccessToken, verifyRole(['owner', 'admin']),removeUser);

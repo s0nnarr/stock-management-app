@@ -14,7 +14,7 @@ function Signup() {
 
     const handleSignup = async (e) => {
         e.preventDefault()
-        await postUser({ name, email, password }, () => navigate('/'))
+        await postUser({ name, email, password }, () => navigate('/myaccount'))
     }
 
     return (

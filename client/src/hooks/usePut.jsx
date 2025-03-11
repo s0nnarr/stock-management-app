@@ -4,7 +4,7 @@ import axios from 'axios'
 import { AuthContext } from '../context/authContext';
 axios.defaults.withCredentials = true
 
-export const usePost = (route) => {
+export const usePut = (route) => {
     const navigate = useNavigate()
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -12,10 +12,10 @@ export const usePost = (route) => {
     const errorTimeoutRef = useRef(null)
     const { dispatch } = useContext(AuthContext)
 
-    const postData = async (data, func, params) => {
+    const putData = async (data, func, params) => {
         setLoading(true)
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/${route}`, data, params)
+            const res = await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/${route}`, data, params)
             setData(res.data)
             //Update context
             if (route === 'user' || route === 'user/login') dispatch({ type: 'LOGIN', payload: res.data })
@@ -41,5 +41,5 @@ export const usePost = (route) => {
         }
     }
 
-    return { postData, data, error, loading }
+    return { putData, data, error, loading }
 }

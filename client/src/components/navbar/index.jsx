@@ -26,6 +26,10 @@ function Navbar() {
                     <AiOutlineUser size={'1.7rem'} onClick={e => { setDropMenu(!dropmenu); }} />
                     <Dropdown menuOptions={[
                         {
+                            option: 'My account',
+                            func: () => navigate('/myaccount')
+                        },
+                        {
                             option: 'Logout',
                             func: () => signoutUser(undefined, () => navigate('/login'))
                         }

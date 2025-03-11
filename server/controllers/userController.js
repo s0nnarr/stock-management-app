@@ -1,4 +1,5 @@
 const userModel = require('../models/userModel')
+const companyModel = require('../models/companyModel')
 const { createAccessToken, createRefreshToken } = require('../functions/createTokens');
 const { accessOptions, refreshOptions } = require('../config/cookiesConfig')
 
@@ -49,8 +50,17 @@ const signoutUser = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
-        const User = await userModel.findById(req.user.id).select('-password')
+        const User = await userModel.findById(req.user._id).populate('currentCompany').select('-password')
         res.status(200).json(User);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+}
+
+const getUserCompanies = async (req, res) => {
+    try {
+        const User = await userModel.findById(req.user._id).select('companies').populate('companies.id')
+        res.status(200).json(User.companies);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -58,8 +68,16 @@ const getUser = async (req, res) => {
 
 const putUser = async (req, res) => {
     try {
-        await userModel.findByIdAndUpdate(req.user.id, req.body)
-        res.status(200).json("User updated successfully");
+
+        if (req.body.currentCompany) {
+            const company = await companyModel.findById(req.body.currentCompany)
+            if (!company) throw Error('Invalid company')
+        }
+
+        let User = await userModel.findByIdAndUpdate(req.user._id, req.body)
+        User = await userModel.findById(User._id).populate('currentCompany').select('-password')
+
+        res.status(200).json(User);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -84,4 +102,4 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-module.exports = { postUser, logUser, signoutUser, getUser, putUser, deleteUser, getAllUsers }
+module.exports = { postUser, logUser, signoutUser, getUser, getUserCompanies, putUser, deleteUser, getAllUsers }

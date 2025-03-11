@@ -1,31 +1,22 @@
-import React from 'react'
-import { useFetch } from '../../hooks/useFetch';
+import React, { useContext } from 'react'
 import './index.css'
+import { AuthContext } from '../../context/authContext';
 import Sidebar from '../../components/sidebar';
 import Navbar from '../../components/navbar';
+import { useFetch } from '../../hooks/useFetch';
 
 function Dashboard() {
 
-    const { data: user, error: errorUser, loading: loadingUser, fetchData: fetchUser } = useFetch('user')
+    const { user } = useContext(AuthContext)
 
     return (
-        loadingUser ?
-            <div>
-                Loading...
-            </div> :
-            <div>
-                <Sidebar tab={'Dashboard'} />
-                <Navbar />
-                {
-                    errorUser &&
-                    <p className='signup-p-error'>
-                        {errorUser}
-                    </p>
-                }
-                <main className='dashboard-main'>
-                    {user ? <h1>Hello {user[0].name}</h1> : <h1>No user...</h1>}
-                </main >
-            </div>
+        <div>
+            <Sidebar tab={'Dashboard'} />
+            <Navbar />
+            <main className='dashboard-main'>
+                {user ? <h1>Welcome to {user.currentCompany.name}</h1> : <h1>No user...</h1>}
+            </main >
+        </div>
     )
 }
 

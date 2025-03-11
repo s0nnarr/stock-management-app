@@ -12,7 +12,7 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault()
-        await loginUser({ email, password }, () => navigate('/'))
+        await loginUser({ email, password }, () => navigate('/myaccount'))
     }
 
     return (

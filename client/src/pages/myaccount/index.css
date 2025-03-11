@@ -1,0 +1,113 @@
+.myaccount-div-center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.myaccount-div-wrapper {
+    width: 480px;
+    height: 56%;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    background-color: var(--base-variant);
+}
+
+.myaccount-div-menu {
+    display: flex;
+    background-color: var(--base-color);
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.myaccount-div-menu ol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    padding: 8px;
+}
+
+.myaccount-div-menu ol li {
+    cursor: pointer;
+    border-radius: 32px;
+    padding: 2px;
+    margin: 0 8px;
+    width: 96px;
+    text-align: center;
+}
+
+.myaccount-div-menu ol li:hover {
+    background-color: var(--base-variant);
+}
+
+.myaccount-div-companies {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 320px;
+}
+
+.myaccount-div-company {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--base-color);
+    padding: 4px;
+    border-radius: 32px;
+    align-items: center;
+}
+
+.myaccount-div-company:hover {
+    background-color: var(--base-variant);
+}
+
+.myaccount-div-company p {
+    cursor: pointer;
+    width: 100%;
+    margin: 0 8px;
+}
+
+.myaccount-div-company button {
+    background-color: transparent;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    width: 80px;
+    padding: 4px;
+    margin: 0 8px;
+}
+
+.myaccount-div-company button:hover {
+    background-color: var(--base-color);
+    border-radius: 32px;
+}
+
+.myaccount-div-addCompany form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.myaccount-div-addCompany form input {
+    color: var(--base-color);
+}
+
+.myaccount-div-addCompany form button {
+    background-color: var(--base-color);
+    border: none;
+}
+
+.myaccount-div-addCompany form button:hover {
+    cursor: pointer;
+}
+
+.myaccount-div-addCompany form button:disabled {
+    background-color: var(--disabled-hint-text);
+    cursor: wait;
+}

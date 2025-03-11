@@ -4,7 +4,7 @@ import axios from 'axios'
 import { AuthContext } from '../context/authContext';
 axios.defaults.withCredentials = true
 
-export const usePost = (route) => {
+export const useDelete = (route) => {
     const navigate = useNavigate()
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -12,14 +12,13 @@ export const usePost = (route) => {
     const errorTimeoutRef = useRef(null)
     const { dispatch } = useContext(AuthContext)
 
-    const postData = async (data, func, params) => {
+    const deleteData = async (params, func) => {
         setLoading(true)
         try {
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/${route}`, data, params)
+            const res = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/${route}`, { params })
             setData(res.data)
             //Update context
-            if (route === 'user' || route === 'user/login') dispatch({ type: 'LOGIN', payload: res.data })
-            if (route === 'user/signout') dispatch({ type: 'SIGNOUT' })
+            if (route === 'user') dispatch({ type: 'LOGIN', payload: res.data })
             //Follow-up function
             if (func) func()
         } catch (error) {
@@ -41,5 +40,5 @@ export const usePost = (route) => {
         }
     }
 
-    return { postData, data, error, loading }
+    return { deleteData, data, error, loading }
 }

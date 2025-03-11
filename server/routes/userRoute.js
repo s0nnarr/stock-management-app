@@ -10,6 +10,7 @@ const {
     putUser,
     deleteUser,
     getUser,
+    getUserCompanies,
 } = require('../controllers/userController')
 
 router
@@ -20,5 +21,6 @@ router
 router.get('/current', verifyAccessToken, getUser)
 router.post('/login', logUser)
 router.post('/signout', signoutUser)
+router.get('/companies', verifyAccessToken, getUserCompanies)
 
 module.exports = router
