@@ -1,7 +1,98 @@
 .dashboard-main {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: top;
     margin-left: 280px;
+    margin-top: 120px;
+}
+
+.dashboard-div-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.dashboard-h3-category {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.dashboard-div-orders {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard-div-orders ol {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 48px;
+}
+
+.dashboard-div-orders ol li {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--base-variant);
+    width: 160px;
+    padding: 24px;
+    border-radius: 16px;
+    gap: 2px;
+}
+
+.dashboard-div-orders ol li label {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--disabled-hint-text);
+}
+
+.dashboard-div-orders ol li p {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.dashboard-div-inventory {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-div-inventoryStats {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--base-variant);
+    padding: 32px;
+    border-radius: 16px;
+    width: 400px;
+}
+
+.dashboard-div-inventoryStats h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dashboard-div-inventoryStats ol {
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard-div-inventoryStats ol li {
+    background-color: var(--base-color);
+    flex-direction: row;
+    padding: 12px;
+    width: 400px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-div-inventoryStats ol li h3 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dashboard-div-inventoryStats ol li p {
+    font-size: 18px;
+    font-weight: 500;
 }
