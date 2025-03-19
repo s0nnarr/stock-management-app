@@ -8,7 +8,7 @@ const postProduct = async (req, res) => {
     }
     try {
         //Check current user
-        const User = await currentUser(req, res)
+        const User = req.user;
         if (!User) {
             return res.status(403).json({ error: "InvalidId" });
         }
@@ -30,7 +30,7 @@ const postProduct = async (req, res) => {
 const getAllProducts = async (req, res) => {
     try {
         //Check current user
-        const User = await currentUser(req, res)
+        const User = req.user;
         if (!User) {
             return res.status(403).json({ error: "InvalidId" });
         }
@@ -60,7 +60,7 @@ const getAllProducts = async (req, res) => {
 const getOneProduct = async (req, res) => {
     try {
         //Check current user
-        const User = await currentUser(req, res)
+        const User = req.user;
         if (!User) {
             return res.status(403).json({ error: "InvalidId" });
         }
@@ -80,7 +80,7 @@ const updateProduct = async (req, res) => {
     const { id } = req.params
     try {
         //Check current user
-        const User = await currentUser(req, res)
+        const User = req.user;
         if (!User) {
             return res.status(403).json({ error: "InvalidId" });
         }
@@ -110,7 +110,7 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     try {
         //Check current user
-        const User = await currentUser(req, res)
+        const User = req.user;
         if (!User) {
             return res.status(403).json({ error: "InvalidId" });
         }
