@@ -5,6 +5,7 @@ import Sidebar from '../../components/sidebar';
 import Navbar from '../../components/navbar';
 import { useFetch } from '../../hooks/useFetch';
 import AreaReChart from '../../components/AreaReChart';
+import BarReChart from '../../components/BarReChart';
 
 function Dashboard() {
 
@@ -53,7 +54,7 @@ function Dashboard() {
                                     </li>
                                     <li>
                                         <h3>Macbook Pro M2</h3>
-                                        <p>18250€</p>
+                                        <p>8300€</p>
                                     </li>
                                 </ol>
                             </div>
@@ -85,20 +86,7 @@ function Dashboard() {
                             </div>
                             <div className='dashboard-div-inventoryStats'>
                                 <h4>Top selling</h4>
-                                <ol>
-                                    <li>
-                                        <h3>Macbook Pro M2</h3>
-                                        <p>612</p>
-                                    </li>
-                                    <li>
-                                        <h3>Asus ROG Strix G15</h3>
-                                        <p>326</p>
-                                    </li>
-                                    <li>
-                                        <h3>RTX 5070 TI</h3>
-                                        <p>163</p>
-                                    </li>
-                                </ol>
+                                <BarReChart />
                             </div>
                         </div>
                     </div>

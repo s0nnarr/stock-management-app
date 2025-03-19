@@ -51,7 +51,17 @@ export default function AreaReChart() {
   function CustomTooltip({ payload, label, active }) {
     if (active) {
       return (
-        <div>
+        <div style={{
+          fontSize: '14px',
+          fontWeight: '500',
+          backgroundColor: '#0F0F0F',
+          color: 'white',
+          padding: '10px',
+          borderRadius: '8px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4px'
+        }}>
           <p>{`${label} : ${payload[0].value}€`}</p>
         </div>
       );
