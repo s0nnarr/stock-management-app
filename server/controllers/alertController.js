@@ -7,6 +7,8 @@ const getAllAlerts = async (req, res) => {
 
     try {
         const Alerts = await alertModel.find({ company: req.user.currentCompany }).skip(page * size).limit(size)
+        if (!Alerts) throw Error('Invalid company')
+
         res.status(200).json(Alerts)
     } catch (err) {
         res.status(400).json({ error: err.message })

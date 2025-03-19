@@ -51,6 +51,7 @@ const signoutUser = async (req, res) => {
 const getUser = async (req, res) => {
     try {
         const User = await userModel.findById(req.user._id).populate('currentCompany').select('-password')
+        if (!User) throw Error('User not found')
         res.status(200).json(User);
     } catch (err) {
         res.status(400).json({ error: err.message });
@@ -59,8 +60,16 @@ const getUser = async (req, res) => {
 
 const getUserCompanies = async (req, res) => {
     try {
+        const page = req.query.page || 0
+        const size = req.query.size || 2
+
         const User = await userModel.findById(req.user._id).select('companies').populate('companies.id')
-        res.status(200).json(User.companies);
+
+        if (!User) throw Error('User not found')
+
+        const Companies = User.companies.slice(page * size, (page * size) + size)
+
+        res.status(200).json(Companies);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -76,6 +85,7 @@ const putUser = async (req, res) => {
 
         let User = await userModel.findByIdAndUpdate(req.user._id, req.body)
         User = await userModel.findById(User._id).populate('currentCompany').select('-password')
+        if (!User) throw Error('User not found')
 
         res.status(200).json(User);
     } catch (err) {
