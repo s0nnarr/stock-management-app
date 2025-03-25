@@ -1,0 +1,112 @@
+.container {
+    background-color: transparent;
+    width: calc(100% - 320px);
+    text-align: center;
+    display: block;
+    height: 100vh;
+    margin: 10%;
+    align-items: center;
+    margin-top: 196px;
+    margin-left: 280px;
+
+}
+
+.inventory-component {
+    background-color: var(--base-variant);
+    border-radius: 32px;
+    padding: 16px;
+    margin: 32px;
+    margin-left: 300px;
+}
+
+.inventory-table {
+    width: 1040px;
+    height: 40px;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.plus{
+    background-color: var(--base-variant);
+    padding: 8px; 
+    border-radius: 8px; 
+    transition: background-color 0.3s ease; 
+    cursor: pointer; 
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-Content: center;
+    size: 24 px;
+}
+
+.plus:hover{
+        background-color: var(--base-color); 
+      
+}
+
+.edit{
+    background-color: var(--base-variant);
+    padding: 8px; 
+    border-radius: 8px; 
+    transition: background-color 0.3s ease; 
+    cursor: pointer; 
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-Content: center;
+    size: 24 px;
+}
+.edit:hover{
+        background-color: var(--base-color); 
+      
+}
+
+.delete{
+    background-color: var(--base-variant);
+    padding: 8px; 
+    border-radius: 8px; 
+    transition: background-color 0.3s ease; 
+    cursor: pointer; 
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-Content: center;
+    size: 24 px;
+}
+
+.delete:hover{
+    background-color: var(--base-color); 
+  
+}
+
+.inventory-header {
+    width: 1040px;
+    height: 44px; 
+    position: absolute;
+    top: 196px;
+    left: 365px;
+    border-radius: 32px;
+    background-color: var(--base-variant); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 54px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.inventory-row {
+    width: 1040px;
+    height: 40px; 
+    left: 365px;
+    border-radius: 32px;
+    background-color: var(--base-variant);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 54px;
+    margin-top: 10px;
+    top: 268px; 
+    font-size: 16px;
+}
